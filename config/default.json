@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://ian123:ian123@cluster0.fdal3.mongodb.net/BestDB?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
+}

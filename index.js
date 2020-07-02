@@ -1,15 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const connectDB = require('./config/db');
 const PORT = 3000;
-app.listen(PORT);
 
-global.items = [
-  { id: '1', name: 'Pencil', price: '$1.00', quantity: 20 },
-  { id: '2', name: 'Pen', price: '$2.00', quantity: 20 },
-  { id: '3', name: 'Eraser', price: '$0.50', quantity: 50 },
-  { id: '4', name: 'Stapler', price: '$5.00', quantity: 10 },
-];
+connectDB();
+app.listen(PORT);
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
