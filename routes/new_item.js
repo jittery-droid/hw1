@@ -7,11 +7,12 @@ router.post('/:id', async (req, res) => {
   const { name, price, quantity } = req.body;
   try {
     let item = new Item({
+      id: req.params.id,
       name,
       price,
       quantity,
     });
-    await item.save();
+    item.save();
     res.status(200);
   } catch (error) {
     console.error(error.message);

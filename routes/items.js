@@ -5,7 +5,7 @@ const Item = require('../models/Item');
 
 router.get('/', async (req, res) => {
   try {
-    const items = Item.find({}).sort({ id: 1 });
+    const items = Item.find({});
     res.status(200).json({ items: items });
   } catch (error) {
     console.error(error.message);

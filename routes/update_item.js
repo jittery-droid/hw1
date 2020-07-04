@@ -6,14 +6,16 @@ const Item = require('../models/Item');
 router.put('/:id', async (req, res) => {
   const { name, price, quantity } = req.body.item;
   const newItem = {
+    id: req.params.id,
     name,
     price,
     quantity,
   };
   try {
-    let item = await Item.findById(req.params.id);
-    item = await Item.findByIdAndUpdate(
-      req.params.id,
+    let item = await Item.findOne({ id: req.params.id });
+    console.log(item);
+    await Item.findByIdAndUpdate(
+      item._id,
       {
         $set: newItem,
       },

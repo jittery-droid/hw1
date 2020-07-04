@@ -4,10 +4,9 @@ const router = express.Router();
 const Item = require('../models/Item');
 
 router.get('/:id', async (req, res) => {
-  const id = req.params.id;
   try {
-    const item = Item.findById(id);
-    res.status(200);
+    const item = Item.findOne({ id: req.params.id });
+    res.status(200).json({ item: item });
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server error');
@@ -17,7 +16,8 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const item = Item.findByIdAndDelete(id);
+    const item = Item.findOne({ id: id });
+    Item.findByIdAndDelete(item._id);
     res.status(200);
   } catch (error) {
     console.error(error.message);

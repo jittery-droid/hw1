@@ -70,7 +70,7 @@ async function updateItem() {
     },
   };
   let request = await fetch(`/update-item/${id}`, {
-    method: 'POST',
+    method: 'PUT',
     body: JSON.stringify(payload),
     headers: {
       'Content-Type': 'application/json',
@@ -101,11 +101,10 @@ async function showItem(id) {
     },
   })
     .then((response) => response.json())
-    .then((response) => popUp(response.item[0]));
+    .then((response) => popUp(response.item));
 }
 
 function popUp(item) {
-  debugger;
   let message = `Id: ${item.id}, Name: ${item.name}, Price: ${item.price}, Quantity: ${item.quantity}`;
   alert(message);
 }
